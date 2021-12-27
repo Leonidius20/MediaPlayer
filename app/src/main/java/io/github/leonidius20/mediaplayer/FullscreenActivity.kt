@@ -1,6 +1,10 @@
 package io.github.leonidius20.mediaplayer
 
+import android.graphics.BitmapFactory
+import android.media.MediaMetadataRetriever
 import android.os.Bundle
+import android.view.View
+import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
 import io.github.leonidius20.mediaplayer.databinding.ActivityFullscreenBinding
 
@@ -18,6 +22,30 @@ class FullscreenActivity : AppCompatActivity() {
 
         binding = ActivityFullscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+
+        val uri = intent.data!!
+
+        val type = contentResolver.getType(uri)!!.split("/")[0]
+        if (type == "audio") {
+            binding.placeholderImage.visibility = View.VISIBLE
+            val pic = MediaMetadataRetriever()
+                .also { it.setDataSource(this, uri) }
+                .embeddedPicture
+
+            if (pic != null) {
+                BitmapFactory.decodeByteArray(pic, 0, pic.size)
+                .also { binding.placeholderImage.setImageBitmap(it) }
+            }
+        }
+
+        binding.videoView.apply {
+            setVideoURI(uri)
+            setMediaController(MediaController(this@FullscreenActivity))
+            requestFocus(0)
+            start()
+        }
 
         // TODO: storage access framework get video (or context resolver..?)
         // or simply make it open videos from other apps (in mainfest)
