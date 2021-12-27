@@ -19,6 +19,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:paddingStart="16dp"
+        android:visibility="gone"
         android:paddingEnd="16dp"
         tools:ignore="ContentDescription" />
 
