@@ -11,7 +11,7 @@ class MediaListAdapter(private val media: Array<MediaItem>, private val onClick:
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val imageView = itemView.findViewById<ImageView>(R.id.item_thumbnail)
-        val titleTextView = itemView.findViewById<TextView>(R.id.title)
+        val titleTextView = itemView.findViewById<TextView>(R.id.item_title)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

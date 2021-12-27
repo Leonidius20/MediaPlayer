@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "io.github.leonidius20.mediaplayer"
-        minSdk 26
+        minSdk 29
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -47,5 +47,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    implementation 'com.github.CodeBoy722:MediaFacer:1.0.2'
     implementation 'com.google.android.material:material:1.4.0'
+
+    implementation "androidx.activity:activity-ktx:1.4.0"
+    implementation "androidx.fragment:fragment-ktx:1.4.0"
+
 }
